@@ -1,0 +1,350 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh; 
+    background: linear-gradient(#F1FAFF, #CBE4FF);
+    overflow: hidden; 
+}
+
+.sidebar {
+    width: 320px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    background: #151A2D;
+    transition: width 0.4s ease;
+}
+
+.sidebar.collapsed {
+    width: 85px;
+}
+
+.sidebar-header {
+    position: relative;
+    display: flex;
+    padding: 25px 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sidebar-header .header-logo img {
+    width: 46px;
+    height: 46px;
+    display: block;
+    object-fit: contain;
+    border-radius: 50%;
+    margin-top: 30px;
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+}
+
+.header-logo img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+}
+
+.hospital-name {
+    margin-left: 10px; 
+    font-size: 1.0rem; 
+    font-weight: 500; 
+    margin-top: 30px;
+    white-space: nowrap; 
+    color: white;
+    transition: opacity 0.4s ease;
+}
+
+.sidebar.collapsed .hospital-name {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sidebar-header .toggler {
+    height: 35px;
+    width: 35px;
+    margin-top: 30px;
+    border: none;
+    color: #151A2D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 8px;
+    background: #fff;
+    transition: 0.3s ease;
+}
+
+.sidebar-header .sidebar-toggler {
+    position: absolute;
+    right: 20px;
+}
+
+.sidebar.collapsed .sidebar-header .sidebar-toggler {
+    transform: translate(-4px, 65px);
+}
+
+.sidebar-header .toggler:hover {
+    background: #dde4fb;
+}
+
+.sidebar-header .menu-toggler {
+    display: none;
+}
+
+.sidebar-header .sidebar-toggler span {
+    font-size: 1.75rem;
+    transition: 0.4s ease;
+}
+
+.sidebar.collapsed .sidebar-header .sidebar-toggler span {
+    transform: rotate(180deg);
+}
+
+.sidebar-nav .nav-list {
+    list-style: none;
+    display: flex;
+    gap: 4px;
+    padding: 0 15px;
+    flex-direction: column;
+    transform: translateY(15px);
+    transition: 0.4s ease;
+}
+
+.sidebar.collapsed .sidebar-nav .primary-nav {
+    transform: translateY(65px);
+}
+
+.sidebar-nav .nav-link {
+    color: #fff;
+    display: flex;
+    gap: 12px;
+    white-space: nowrap;
+    border-radius: 8px;
+    align-items: center;
+    padding: 12px 15px;
+    text-decoration: none;
+    transition: 0.4s ease;
+}
+
+.sidebar-nav .nav-link:hover {
+    color: #151A2D;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar-nav .nav-label {
+    transition: opacity 0.4s ease;
+}
+
+.sidebar.collapsed .sidebar-nav .nav-link .nav-label {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sidebar-nav .nav-item {
+    position: relative;
+}
+
+.sidebar-nav .nav-tooltip {
+    position: absolute;
+    top: -10px;
+    opacity: 0;
+    display: none;
+    pointer-events: none;
+    left: calc(100% + 25px);
+    color: #151A2D;
+    padding: 6px 12px;
+    border-radius: 8px;
+    background: #fff;
+    white-space: nowrap;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    transition: 0s;
+}
+
+.sidebar.collapsed .sidebar-nav .nav-tooltip {
+    display: block;
+}
+
+.sidebar-nav .nav-item:hover .nav-tooltip {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(50%);
+    transition: 0.4s ease;
+}
+
+.sidebar-nav .secondary-nav {
+    position: absolute;
+    bottom: 70px;
+    width: 100%;
+}
+
+main {
+    transition: margin-left 0.4s ease;
+    margin-left: 320px;
+    padding: min(30px, 7%);
+    margin-top: 0;
+}
+
+.sidebar.collapsed + main {
+    margin-left: 85px; 
+}
+
+.header-container {
+    margin-bottom: 20px;
+}
+
+.header {
+    position: fixed; /* Header ko fixed position de rahe hain */
+    top: 0; /* Top par position */
+    left: 320px; /* Sidebar open hone par left position */
+    width: calc(100% - 320px); /* Header ki width ko adjust karein */
+    right: 40px; /* Right margin set karein */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #3f51b5;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 10px 10px 10px 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000; /* Header ko upar rakhne ke liye */
+    transition: left 0.4s ease; /* Transition effect for left property */
+}
+
+/* Sidebar ke close hone par */
+.sidebar.collapsed + main .header {
+    left: 85px; /* Sidebar close hone par header ki position */
+    width: calc(100% - 85px); /* Width ko adjust karein */
+}
+
+
+
+.header .name {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.nav-link {
+    display: flex;
+}
+
+.nav-link a {
+    color: white;
+    text-decoration: none;
+    margin: 0 15px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-link a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.icon-buttons {
+    display: flex;
+    align-items: center;
+}
+
+.icon-buttons button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 1.2em;
+    margin-left: 15px;
+    transition: color 0.3s ease;
+}
+
+.icon-buttons button:hover {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.banner-container {
+    margin-bottom: 20px;
+    height: 250px;
+    
+}
+
+.welcome-banner {
+    background-color: plum;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    height: 100%;
+    border-radius: 10px 10px 10px 10px;
+}
+
+.welcome-banner h1 {
+    font-size: 2.5rem;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 40px;
+    background: linear-gradient(45deg, #d5006d, #c51162, #880e4f);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    
+}
+
+
+.welcome-banner p {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    color: #fff;
+}
+
+
+.about-container,
+.services-container,
+.contact-container {
+    border: 1px solid #42434a;
+    border-radius: 1em;
+    margin-bottom: 20px;
+    padding: min(3em, 15%);
+}
+
+.about-container h2,
+.services-container h2,
+.contact-container h2,
+.about-container p,
+.services-container p,
+.contact-container p {
+    margin-top: 1em;
+}
+
+
+
+#mainContent {
+    padding-top: 80px;
+    height: calc(100vh - 30px);
+    overflow-y: auto;
+}
+
+.nav-link a {
+    margin: 0 10px;
+    color: #fff;
+}
+
+.icon-buttons button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+}
+
+.icon-buttons button:hover {
+    color: #ddd;
+}
